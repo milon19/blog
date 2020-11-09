@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Posts</a>
+                    <a class="nav-link" href="{% url 'posts' %}">Posts</a>
                 </li>
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
