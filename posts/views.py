@@ -18,6 +18,14 @@ class PostListView(TemplateView):
 
 
 # POST DETAILS VIEW ENDPOINT
-def post_details(request, post_id):
-    print(post_id)
-    return render(request, 'blog-post.html')
+class PostDetailView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        post_id = kwargs['post_id']
+        post_url = 'http://jsonplaceholder.typicode.com/posts/{}'.format(post_id)
+        req_post = requests.get(post_url)
+        post = req_post.json()
+
+        context = {
+            "post": post,
+        }
+        return render(request, 'blog-post.html', context)
