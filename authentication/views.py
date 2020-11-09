@@ -1,8 +1,10 @@
 from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import Http404
-from django.shortcuts import render
-from authentication.forms import UserLoginForm
+from authentication.forms import UserLoginForm, UserRegisterForm
+
+from authentication.models import User
 
 
 # LOGIN VIEW ENDPOINT
@@ -17,5 +19,8 @@ class UserLogoutView(LogoutView):
     template_name = 'logout.html'
 
 
-def register(request):
-    return render(request, 'register.html')
+# REGISTRATION VIEW ENDPOINT
+class UserRegisterView(CreateView):
+    form_class = UserRegisterForm
+    success_url = reverse_lazy('login')
+    template_name = 'register.html'
