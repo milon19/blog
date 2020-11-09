@@ -17,7 +17,7 @@
         </ol>
 
         <!-- Blog Post -->
-        {% for foo in data %}
+        {% for post in posts %}
             <div class="card mb-4">
             <div class="card-body">
                 <div class="row">
@@ -27,15 +27,15 @@
                         </a>
                     </div>
                     <div class="col-lg-6">
-                        <h2 class="card-title">{{ foo.title }}</h2>
-                        <p class="card-text">{{ foo.body }}</p>
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text">{{ post.body|truncatechars:100 }}</p>
+                        <a href="{% url 'posts-details' post.id %}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                 </div>
             </div>
             <div class="card-footer text-muted">
                 Posted on January 1, 2017 by
-                <a href="#">{{ foo.userId }}</a>
+                <a href="#">{{ post.userId }}</a>
             </div>
         </div>
         {% endfor %}
@@ -80,12 +80,10 @@
             if (window.pageNumer === 1) {
                 document.getElementById("newer").classList.add("disabled");
             }
-            $("#previous").click(function (event) {
-                {#event.preventDefault();#}
+            $("#previous").click(function () {
                 window.location.href = '/?page=' + (window.pageNumer + 1);
             })
-            $("#next").click(function (event) {
-                {#event.preventDefault();#}
+            $("#next").click(function () {
                 window.location.href = '/?page=' + (window.pageNumer - 1);
             })
         })

@@ -12,11 +12,12 @@ class PostListView(TemplateView):
         data_json = req.json()
 
         context = {
-            "data": data_json
+            "posts": data_json
         }
         return render(request, 'blog-listing.html', context)
 
 
 # POST DETAILS VIEW ENDPOINT
 def post_details(request, post_id):
+    print(post_id)
     return render(request, 'blog-post.html')
