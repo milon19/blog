@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Posts</a>
+                    <a class="nav-link" href="{% url 'posts' %}">Posts</a>
                 </li>
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
@@ -71,6 +71,9 @@
 <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 <script src="{% static  'js/jqBootstrapValidation.js' %}"></script>
 <script src="{% static  'js/contact_me.js' %}"></script>
+
+{% block custome_script %}
+{% endblock %}
 
 </body>
 
