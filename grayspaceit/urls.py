@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from posts.views import posts
+from posts.views import PostListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
     path('posts/', include('posts.urls')),
-    path('', posts),
+    path('', PostListView.as_view(), name='posts'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

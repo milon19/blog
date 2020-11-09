@@ -4,6 +4,7 @@ from django.forms.widgets import PasswordInput, TextInput
 from django import forms
 from authentication.models import User
 
+
 class UserLoginForm(AuthenticationForm):
     username = forms.EmailField(widget=TextInput(attrs={
         'class': 'form-control',

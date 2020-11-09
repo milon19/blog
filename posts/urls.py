@@ -1,7 +1,6 @@
 from django.urls import path
-from posts.views import posts, post_details
+from posts.views import post_details
 
 urlpatterns = [
-    path('', posts),
-    path('<int:post_id>', post_details)
+    path('<int:post_id>', post_details, name='posts-details')
 ]
