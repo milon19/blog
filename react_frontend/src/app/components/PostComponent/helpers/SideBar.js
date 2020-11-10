@@ -2,18 +2,18 @@ import React from "react";
 
 const SideBar = () => {
   return (
-    <div class="col-md-4">
-      <div class="card mb-4">
-        <h5 class="card-header">Search</h5>
-        <div class="card-body">
-          <div class="input-group">
+    <div className="col-md-4">
+      <div className="card mb-4">
+        <h5 className="card-header">Search</h5>
+        <div className="card-body">
+          <div className="input-group">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Search for..."
             />
-            <span class="inpug-group-append">
-              <button class="btn btn-secondary" type="button">
+            <span className="inpug-group-append">
+              <button className="btn btn-secondary" type="button">
                 Go!
               </button>
             </span>
@@ -21,12 +21,12 @@ const SideBar = () => {
         </div>
       </div>
 
-      <div class="card my-4">
-        <h5 class="card-header">Categories</h5>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-lg-6">
-              <ul class="list-unstyled mb-0">
+      <div className="card my-4">
+        <h5 className="card-header">Categories</h5>
+        <div className="card-body">
+          <div className="row">
+            <div className="col-lg-6">
+              <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#">Web Design</a>
                 </li>
@@ -38,8 +38,8 @@ const SideBar = () => {
                 </li>
               </ul>
             </div>
-            <div class="col-lg-6">
-              <ul class="list-unstyled mb-0">
+            <div className="col-lg-6">
+              <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#">JavaScript</a>
                 </li>
@@ -55,9 +55,9 @@ const SideBar = () => {
         </div>
       </div>
 
-      <div class="card my-4">
-        <h5 class="card-header">Side Widget</h5>
-        <div class="card-body">
+      <div className="card my-4">
+        <h5 className="card-header">Side Widget</h5>
+        <div className="card-body">
           You can put anything you want inside of these side widgets. They are
           easy to use, and feature the new Bootstrap 4 card containers!
         </div>
