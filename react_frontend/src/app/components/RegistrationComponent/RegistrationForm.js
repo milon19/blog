@@ -4,13 +4,15 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 
 const registrationValidationSchema = Yup.object().shape({
-  firstName: Yup.string().required("First name is required."),
-  lastName: Yup.string().required("Last name is required."),
+  first_name: Yup.string().required("First name is required."),
+  last_name: Yup.string().required("Last name is required."),
   email: Yup.string()
     .email("Enter a valid email.")
     .required("Email is required."),
   password1: Yup.string().required("Password is required."),
-  password2: Yup.string().required("Verify Password is required."),
+  password2: Yup.string()
+    .oneOf([Yup.ref("password1"), null], "Possword doesn't match.")
+    .required("Password confirm is required"),
 });
 
 const RegistrationForm = ({ registrationInit, doRegistration }) => {
@@ -27,14 +29,14 @@ const RegistrationForm = ({ registrationInit, doRegistration }) => {
         <Form>
           <div className="control-group form-group">
             <div className="controls">
-              <label htmlFor="firstName">First Name*</label>
+              <label htmlFor="first_name">First Name*</label>
               <Field
                 className="form-control"
-                id="firstName"
-                name="firstName"
+                id="first_name"
+                name="first_name"
                 type="text"
               />
-              <ErrorMessage name="firstName">
+              <ErrorMessage name="first_name">
                 {(msg) => (
                   <div className="alert alert-danger mt-2" role="alert">
                     {msg}
@@ -46,14 +48,14 @@ const RegistrationForm = ({ registrationInit, doRegistration }) => {
 
           <div className="control-group form-group">
             <div className="controls">
-              <label htmlFor="lastName">Last Name*</label>
+              <label htmlFor="last_name">Last Name*</label>
               <Field
                 className="form-control"
-                id="lastName"
-                name="lastName"
+                id="last_name"
+                name="last_name"
                 type="text"
               />
-              <ErrorMessage name="lastName">
+              <ErrorMessage name="last_name">
                 {(msg) => (
                   <div className="alert alert-danger mt-2" role="alert">
                     {msg}
@@ -87,9 +89,9 @@ const RegistrationForm = ({ registrationInit, doRegistration }) => {
               <label htmlFor="password1">Password*</label>
               <Field
                 className="form-control"
-                type="password1"
+                type="password"
                 id="password1"
-                name="password"
+                name="password1"
               />
               <ErrorMessage name="password1">
                 {(msg) => (
@@ -106,9 +108,9 @@ const RegistrationForm = ({ registrationInit, doRegistration }) => {
               <label htmlFor="password2">Verify Password*</label>
               <Field
                 className="form-control"
-                type="password2"
+                type="password"
                 id="password2"
-                name="password"
+                name="password2"
               />
               <ErrorMessage name="password2">
                 {(msg) => (
@@ -121,7 +123,7 @@ const RegistrationForm = ({ registrationInit, doRegistration }) => {
           </div>
 
           <button className="btn btn-primary" type="submit">
-            Login
+            Register
           </button>
         </Form>
       )}

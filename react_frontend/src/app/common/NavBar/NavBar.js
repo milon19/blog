@@ -14,12 +14,11 @@ const NavBar = () => {
     verifyToken(data)
       .then(() => {
         setIsAuthenticated(true);
-        console.log("NavBar -> isAuthenticated", isAuthenticated);
       })
       .catch(() => {
         setIsAuthenticated(false);
-        console.log("NavBar -> isAuthenticated", isAuthenticated);
       });
+    console.log("NavBar -> isAuthenticated", isAuthenticated);
   }, [token, isAuthenticated]);
 
   return (
@@ -42,9 +41,15 @@ const NavBar = () => {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <NavLink className="nav-link" to="/posts">
+              {isAuthenticated && <h1>hello</h1>}
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/posts">
               Posts
             </NavLink>
           </li>
+
           {isAuthenticated === true && (
             <li className="nav-item">
               <NavLink className="nav-link" to="/logout">

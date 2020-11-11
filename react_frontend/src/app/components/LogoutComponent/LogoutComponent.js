@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const Logout = () => {
   const handleLogout = () => {
     localStorage.setItem("accessToken", null);
-    console.log(localStorage.getItem("accessToken"));
   };
   return (
     <div

@@ -1,10 +1,7 @@
 import React from "react";
 
 import RegistrationForm from "./RegistrationForm";
-
-const doRegistration = (values) => {
-  console.log(values);
-};
+import { postRegistration } from "../../services/authenticationsAPIService";
 
 const registrationInit = {
   first_name: "",
@@ -14,7 +11,23 @@ const registrationInit = {
   password2: "",
 };
 
-const Registration = () => {
+const Registration = (props) => {
+  const doRegistration = (values) => {
+    const data = {
+      email: values.email,
+      first_name: values.first_name,
+      last_name: values.last_name,
+      password: values.password2,
+    };
+    postRegistration(data)
+      .then(() => {
+        props.history.push("/login");
+        alert("Registration successfull.");
+      })
+      .catch(() => {
+        alert("Registration filled. Please try again.");
+      });
+  };
   return (
     <div className="container" style={{ minHeight: "80vh" }}>
       <h1 className="mt-4 mb-3">
