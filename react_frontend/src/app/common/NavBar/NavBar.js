@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 
+import { verifyToken } from "../../services/authenticationsAPIService";
+
 const NavBar = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token] = useState(localStorage.getItem("accessToken"));
+
+  useEffect(() => {
+    const data = {
+      token: token,
+    };
+    verifyToken(data)
+      .then(() => {
+        setIsAuthenticated(true);
+        console.log("NavBar -> isAuthenticated", isAuthenticated);
+      })
+      .catch(() => {
+        setIsAuthenticated(false);
+        console.log("NavBar -> isAuthenticated", isAuthenticated);
+      });
+  }, [token, isAuthenticated]);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
@@ -25,23 +45,27 @@ const NavBar = () => {
               Posts
             </NavLink>
           </li>
-
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/logout">
-              Logout
-            </NavLink>
-          </li>
-
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/login">
-              Login
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/register">
-              Register
-            </NavLink>
-          </li>
+          {isAuthenticated === true && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/logout">
+                Logout
+              </NavLink>
+            </li>
+          )}
+          {isAuthenticated === false && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+            </li>
+          )}
+          {isAuthenticated === false && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/register">
+                Register
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

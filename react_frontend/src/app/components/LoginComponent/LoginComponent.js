@@ -2,16 +2,28 @@ import React from "react";
 
 import LoginForm from "./LoginForm";
 
-const doLogin = (values) => {
-  console.log(values);
-};
+import { postLogin } from "../../services/authenticationsAPIService";
 
 const loginInit = {
   email: "",
   password: "",
 };
 
-const Login = () => {
+const Login = (props) => {
+  const doLogin = (values) => {
+    postLogin(values)
+      .then((response) => {
+        const { data } = response;
+        localStorage.setItem("accessToken", data.access);
+        localStorage.setItem("refreshToken", data.refresh);
+        props.history.push("/");
+      })
+      .catch((error) => {
+        console.log("doLogin -> error", error);
+        alert("Enter a valid Email and Password");
+      });
+  };
+
   return (
     <div className="container" style={{ minHeight: "80vh" }}>
       <h1 className="mt-4 mb-3">
