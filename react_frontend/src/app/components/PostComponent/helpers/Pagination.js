@@ -1,15 +1,31 @@
 import React from "react";
 
-const Pagination = () => {
+const Pagination = ({ handlePagination, disablePrevious, disableNext }) => {
+  const getButtonClass = (value) => {
+    return !value ? "page-item" : "page-item disabled";
+  };
+
   return (
     <ul className="pagination justify-content-center mb-4">
-      <li className="page-item" id="older" style={{ cursor: "pointer" }}>
-        <button id="previous" className="page-link">
+      <li
+        className={getButtonClass(disablePrevious)}
+        style={{ cursor: "pointer" }}
+      >
+        <button
+          onClick={() => handlePagination("previous")}
+          id="previous"
+          className="page-link"
+        >
           &larr; Older
         </button>
       </li>
-      <li className="page-item" id="newer">
-        <button id="next" className="page-link" style={{ cursor: "pointer" }}>
+      <li className={getButtonClass(disableNext)}>
+        <button
+          id="next"
+          onClick={() => handlePagination("next")}
+          className="page-link"
+          style={{ cursor: "pointer" }}
+        >
           Newer &rarr;
         </button>
       </li>

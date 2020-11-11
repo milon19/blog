@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 
-const PostBody = () => {
+import { getComments } from "../../../services/postServices";
+
+const PostBody = ({ post }) => {
+  const postId = post.id;
+
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    const fatchData = async () => {
+      const { data } = await getComments(postId);
+      setComments(data);
+    };
+
+    fatchData();
+  }, [postId]);
+
   return (
     <div className="col-lg-8">
       <img
@@ -14,7 +29,7 @@ const PostBody = () => {
       <hr />
       <p>Posted on January 1, 2017 at 12:00 PM</p>
       <hr />
-      <p className="lead">Post Body</p>
+      <p className="lead">{post.body}</p>
 
       <blockquote className="blockquote">
         <p className="mb-0">
@@ -30,9 +45,9 @@ const PostBody = () => {
       <hr />
       <CommentForm />
 
-      <Comment />
-      <Comment />
-      <Comment />
+      {comments.map((comment) => (
+        <Comment key={comment.id} comment={comment} />
+      ))}
     </div>
   );
 };

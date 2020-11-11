@@ -1,6 +1,6 @@
 import React from "react";
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   return (
     <div className="media mb-4">
       <img
@@ -9,8 +9,8 @@ const Comment = () => {
         alt=""
       />
       <div className="media-body">
-        <h5 className="mt-0">Commenter Name</h5>
-        Comment Body
+        <h5 className="mt-0">{comment.name}</h5>
+        {comment.body}
       </div>
     </div>
   );
