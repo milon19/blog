@@ -41,11 +41,6 @@ const NavBar = () => {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <NavLink className="nav-link" to="/posts">
-              {isAuthenticated && <h1>hello</h1>}
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/posts">
               Posts
             </NavLink>
           </li>
