@@ -9,14 +9,15 @@ const loginInit = {
   password: "",
 };
 
-const Login = (props) => {
+const Login = () => {
   const doLogin = (values) => {
     postLogin(values)
       .then((response) => {
         const { data } = response;
         localStorage.setItem("accessToken", data.access);
         localStorage.setItem("refreshToken", data.refresh);
-        props.history.push("/");
+        // props.history.push("/");
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log("doLogin -> error", error);

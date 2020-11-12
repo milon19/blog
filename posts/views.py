@@ -2,35 +2,30 @@ import requests
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from posts.api_services import APIServicesMixin
+
 
 # POSTS VIEW ENDPOINT
-class PostListView(TemplateView):
+class PostListView(TemplateView, APIServicesMixin):
     def get(self, request, *args, **kwargs):
         page = request.GET.get('page', 1)
-        url = 'http://jsonplaceholder.typicode.com/posts?_page={}&_limit=4'.format(page)
-        req = requests.get(url)
-        data_json = req.json()
-
+        data = self.get_data(['posts'], query={'_page': page, '_limit': 4})
         context = {
-            "posts": data_json
+            "posts": data
         }
         return render(request, 'blog-listing.html', context)
 
 
 # POST DETAILS VIEW ENDPOINT
-class PostDetailView(TemplateView):
+class PostDetailView(TemplateView, APIServicesMixin):
     def get(self, request, *args, **kwargs):
         post_id = kwargs['post_id']
-        post_url = 'http://jsonplaceholder.typicode.com/posts/{}'.format(post_id)
-        comment_url = 'http://jsonplaceholder.typicode.com/posts/{}/comments'.format(post_id)
-        req_post = requests.get(post_url)
-        req_comment = requests.get(comment_url)
 
-        post = req_post.json()
-        comments = req_comment.json()
+        post_data = self.get_data(["posts", post_id])
+        comments_data = self.get_data(['posts', post_id, 'comments'])
 
         context = {
-            "post": post,
-            "comments": comments,
+            "post": post_data,
+            "comments": comments_data,
         }
         return render(request, 'blog-post.html', context)

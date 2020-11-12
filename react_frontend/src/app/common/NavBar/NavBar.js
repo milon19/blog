@@ -3,9 +3,16 @@ import { NavLink, Link } from "react-router-dom";
 
 import { verifyToken } from "../../services/authenticationsAPIService";
 
+const handleLogout = () => {
+  localStorage.setItem("accessToken", null);
+  console.log("handleLogout -> asdasdasda");
+
+  window.location.href = "/logout";
+};
+
 const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token] = useState(localStorage.getItem("accessToken"));
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const data = {
@@ -47,11 +54,12 @@ const NavBar = () => {
 
           {isAuthenticated === true && (
             <li className="nav-item">
-              <NavLink className="nav-link" to="/logout">
+              <Link className="nav-link" onClick={() => handleLogout()}>
                 Logout
-              </NavLink>
+              </Link>
             </li>
           )}
+
           {isAuthenticated === false && (
             <li className="nav-item">
               <NavLink className="nav-link" to="/login">
@@ -59,6 +67,7 @@ const NavBar = () => {
               </NavLink>
             </li>
           )}
+
           {isAuthenticated === false && (
             <li className="nav-item">
               <NavLink className="nav-link" to="/register">

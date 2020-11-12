@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <a href="#">
-                            <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+                            <img class="img-fluid rounded" src="http://placehold.it/750x300" alt=""/>
                         </a>
                     </div>
                     <div class="col-lg-6">
@@ -58,7 +58,6 @@
 {% block custome_script %}
     <script>
         var urlParams = new URLSearchParams(window.location.search);
-        console.log(urlParams.has('page'));
         if (urlParams.has('page')) {
             window.pageNumer = parseInt(urlParams.get('page'));
         } else {
@@ -70,7 +69,6 @@
                 document.getElementById("older").classList.add("disabled");
             }
             if (window.pageNumer >= 1) {
-                console.log("remove new");
                 document.getElementById("newer").classList.remove("disabled");
             }
 
