@@ -89,8 +89,12 @@ WSGI_APPLICATION = 'grayspaceit.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd6itnt3p1us1h1',
+        'USER': 'hpjsllovmvnpps',
+        'PASSWORD': '6507e48ca3b0d7f3d4b987807573a70a809c078667596f91b9c34769ce6bd388',
+        'HOST': 'ec2-54-158-190-214.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
