@@ -7,7 +7,7 @@ const handleLogout = () => {
   localStorage.setItem("accessToken", null);
   console.log("handleLogout -> asdasdasda");
 
-  window.location.href = "/logout";
+  window.location.href = "/react/logout";
 };
 
 const NavBar = () => {
@@ -47,7 +47,7 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/posts">
+            <NavLink className="nav-link" to="/react/posts">
               Posts
             </NavLink>
           </li>
@@ -62,7 +62,7 @@ const NavBar = () => {
 
           {isAuthenticated === false && (
             <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
+              <NavLink className="nav-link" to="/react/login">
                 Login
               </NavLink>
             </li>
@@ -70,7 +70,7 @@ const NavBar = () => {
 
           {isAuthenticated === false && (
             <li className="nav-item">
-              <NavLink className="nav-link" to="/register">
+              <NavLink className="nav-link" to="/react/register">
                 Register
               </NavLink>
             </li>

@@ -19,8 +19,7 @@ const Login = () => {
         // props.history.push("/");
         window.location.href = "/";
       })
-      .catch((error) => {
-        console.log("doLogin -> error", error);
+      .catch(() => {
         alert("Enter a valid Email and Password");
       });
   };
