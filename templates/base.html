@@ -15,7 +15,13 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static  'css/modern-business.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
+    <style>
+        #toast-container {
+            margin-top: 45px;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,6 +72,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{% static  'vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static  'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <!-- Contact form JavaScript -->
 <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
@@ -75,6 +82,26 @@
 {% block custome_script %}
 {% endblock %}
 
+{% if messages %}
+    <script>
+        {% for message in messages %}
+
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-top-right",
+                "timeOut": "1500",
+                "extendedTimeOut": "500",
+            };
+
+            {% if message.tags == "success"%}
+                toastr.success("{{message}}");
+            {% else %}
+                toastr.error("{{message}}");
+            {% endif %}
+
+        {% endfor %}
+    </script>
+{% endif %}
 </body>
 
 </html>

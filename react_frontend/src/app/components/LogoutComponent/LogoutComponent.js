@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Logout = () => {
-  const handleLogout = () => {
-    localStorage.setItem("accessToken", null);
-  };
+  // window.location.href = "/logout";
   return (
     <div
       className="container"
@@ -13,7 +11,7 @@ const Logout = () => {
       <h2>You have been logged out</h2>
       <div className="border-top pt-3">
         <p>
-          <Link className="btn btn-danger" onClick={handleLogout()} to="/login">
+          <Link className="btn btn-danger" to="/login">
             Log in again
           </Link>
         </p>
