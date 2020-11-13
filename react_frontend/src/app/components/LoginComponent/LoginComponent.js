@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import LoginForm from "./LoginForm";
 
-import { postLogin } from "../../services/authenticationsAPIService";
+import {
+  postLogin,
+  verifyToken,
+} from "../../services/authenticationsAPIService";
 
 const loginInit = {
   email: "",
@@ -10,14 +13,29 @@ const loginInit = {
 };
 
 const Login = () => {
+  const token = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    const data = {
+      token: token,
+    };
+    verifyToken(data)
+      .then((res) => {
+        window.location.href = "/react";
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log("Login -> error", error);
+      });
+  }, [token]);
+
   const doLogin = (values) => {
     postLogin(values)
       .then((response) => {
         const { data } = response;
         localStorage.setItem("accessToken", data.access);
         localStorage.setItem("refreshToken", data.refresh);
-        // props.history.push("/");
-        window.location.href = "/";
+        window.location.href = "/react";
       })
       .catch(() => {
         alert("Enter a valid Email and Password");
