@@ -7,7 +7,7 @@ const PostCard = ({ post }) => {
       <div className="card-body">
         <div className="row">
           <div className="col-lg-6">
-            <Link to="posts/">
+            <Link to={`/react/posts/${post.id}`}>
               <img
                 className="img-fluid rounded"
                 src="http://placehold.it/750x300"
@@ -19,7 +19,7 @@ const PostCard = ({ post }) => {
           <div className="col-lg-6">
             <h2 className="card-title">{post.title}</h2>
             <p className="card-text">{post.body}</p>
-            <Link to={`/posts/${post.id}`} className="btn btn-primary">
+            <Link to={`/react/posts/${post.id}`} className="btn btn-primary">
               Read More &rarr;
             </Link>
           </div>

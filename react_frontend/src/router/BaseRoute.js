@@ -17,16 +17,17 @@ const BaseRoute = () => {
       <NavBar />
       <main className="container">
         <Switch>
-          <Route path="/register" component={Register}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/logout" component={Logout}></Route>
+          <Route path="/react/register" component={Register}></Route>
+          <Route path="/react/login" component={Login}></Route>
+          <Route path="/react/logout" component={Logout}></Route>
 
-          <Route path="/posts/:id" exact component={PostDetails}></Route>
-          <Route path="/posts" exact component={Post}></Route>
+          <Route path="/react/posts/:id" exact component={PostDetails}></Route>
+          <Route path="/react/posts" exact component={Post}></Route>
 
-          <Route path="/not-found" exact component={NotFound}></Route>
-          <Redirect from="/" exact to="/posts" />
-          <Redirect to="/not-found" />
+          <Route path="/react/not-found" exact component={NotFound}></Route>
+          <Redirect from="/" exact to="/react/posts" />
+          <Redirect from="/react" exact to="/react/posts" />
+          <Redirect to="/react/not-found" />
         </Switch>
       </main>
       <Footer />
