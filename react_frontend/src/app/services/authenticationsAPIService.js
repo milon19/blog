@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiEndpoint = "http://127.0.0.1:8000/api/";
+const apiEndpoint = "https://grayspaceit-blog.herokuapp.com/api/";
 
 export function postLogin(values) {
   return axios.post(apiEndpoint + "token/", values);
