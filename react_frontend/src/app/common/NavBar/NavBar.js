@@ -7,7 +7,7 @@ const handleLogout = () => {
   localStorage.setItem("accessToken", null);
   console.log("handleLogout -> asdasdasda");
 
-  window.location.href = "/logout";
+  window.location.href = "/react/logout";
 };
 
 const NavBar = () => {
@@ -25,12 +25,11 @@ const NavBar = () => {
       .catch(() => {
         setIsAuthenticated(false);
       });
-    console.log("NavBar -> isAuthenticated", isAuthenticated);
   }, [token, isAuthenticated]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/react">
         Example Blog
       </Link>
       <button
@@ -47,14 +46,14 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/posts">
+            <NavLink className="nav-link" to="/react/posts">
               Posts
             </NavLink>
           </li>
 
           {isAuthenticated === true && (
             <li className="nav-item">
-              <Link className="nav-link" onClick={() => handleLogout()}>
+              <Link className="nav-link" to="#" onClick={() => handleLogout()}>
                 Logout
               </Link>
             </li>
@@ -62,7 +61,7 @@ const NavBar = () => {
 
           {isAuthenticated === false && (
             <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
+              <NavLink className="nav-link" to="/react/login">
                 Login
               </NavLink>
             </li>
@@ -70,7 +69,7 @@ const NavBar = () => {
 
           {isAuthenticated === false && (
             <li className="nav-item">
-              <NavLink className="nav-link" to="/register">
+              <NavLink className="nav-link" to="/react/register">
                 Register
               </NavLink>
             </li>
