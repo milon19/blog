@@ -25,12 +25,11 @@ const NavBar = () => {
       .catch(() => {
         setIsAuthenticated(false);
       });
-    console.log("NavBar -> isAuthenticated", isAuthenticated);
   }, [token, isAuthenticated]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/react">
         Example Blog
       </Link>
       <button
@@ -54,7 +53,7 @@ const NavBar = () => {
 
           {isAuthenticated === true && (
             <li className="nav-item">
-              <Link className="nav-link" onClick={() => handleLogout()}>
+              <Link className="nav-link" to="#" onClick={() => handleLogout()}>
                 Logout
               </Link>
             </li>

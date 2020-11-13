@@ -13,26 +13,31 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+from pathlib import Path
+
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q6gt_q-os$#+1^(%kl0a!y)gg9#nbj3c56)3i8e)p=tr9=*@q)'
+
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+DEBUG = env.bool('DEBUG', default=False)
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://grayspaceit-blog.herokuapp.com/"
-]
+ALLOWED_HOSTS = env.str('ALLOWED_HOSTS').split(' ')
+
+CORS_ORIGIN_ALLOW_ALL = env.bool('CORS_ORIGIN_ALLOW_ALL', default=True)
+CORS_ORIGIN_WHITELIST = env.str('CORS_ORIGIN_WHITELIST').split(' ')
 
 # Application definition
 
@@ -90,14 +95,8 @@ WSGI_APPLICATION = 'grayspaceit.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd6itnt3p1us1h1',
-        'USER': 'hpjsllovmvnpps',
-        'PASSWORD': '6507e48ca3b0d7f3d4b987807573a70a809c078667596f91b9c34769ce6bd388',
-        'HOST': 'ec2-54-158-190-214.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
+    'default': env.db() if env.str("DATABASE_URL", default='') and not DEBUG else env.db('SQLITE_URL',
+                                                                                         default='sqlite:///db.sqlite3')
 }
 
 # Password validation
