@@ -11,7 +11,7 @@ $ cd blog
 ```
 
 - Create Virtual environment and Install dependencies
-```shell script
+```diff
 $ virtualenv env
 $ source ./env/bin/activate
 $ pip install -r requirements.txt
@@ -35,8 +35,8 @@ $ python manage.py runserver
 ```
 Then visit [http://localhost:8000](http://localhost:8000) to view the app.
 
-<b>`N.B: React app is server from Django as static files. You will find React App in 
-[http://localhost:8000/react/](http://localhost:8000/react/) url.`</b>
+<b>```N.B: React app is server from Django as static files. You will find React App in 
+(http://localhost:8000/react/) url.```</b>
 
 ## React App
 - React App Directory: <b>`/react_frontend`</b>
@@ -56,6 +56,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. <
 
 ## Deploy to Heroku
 
-You can deploy this app yourself to Heroku to play with.
+This application is currently deployed in Heroku. 
 
-[https://grayspaceit-blog.herokuapp.com/](https://grayspaceit-blog.herokuapp.com/)
+To Visit follow this link: [https://grayspaceit-blog.herokuapp.com/](https://grayspaceit-blog.herokuapp.com/)
