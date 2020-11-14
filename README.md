@@ -39,8 +39,8 @@ Then visit [http://localhost:8000](http://localhost:8000) to view the app.
 (http://localhost:8000/react/) url.```</b>
 
 ## React App
-- React App Directory: <b>`/react_frontend`</b>
-- React build files: <b>`/react_frontend/serve_from_django`</b>
+- React App Directory: <b>`/blog/react_frontend`</b>
+- React build files: <b>`/blog/react_frontend/serve_from_django`</b>
 
 ## Run React App:
 You can run react app separately.
