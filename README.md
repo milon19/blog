@@ -24,7 +24,7 @@ ALLOWED_HOSTS
 CORS_ORIGIN_ALLOW_ALL
 CORS_ORIGIN_WHITELIST
 SQLITE_URL
-DEBUG=True
+DEBUG
 ```
 
 ## Run
@@ -35,7 +35,7 @@ $ python manage.py runserver
 ```
 Then visit [http://localhost:8000](http://localhost:8000) to view the app.
 
-<b>```N.B: React app is server from Django as static files. You will find React App in 
+<b>```N.B: React app is serve from Django as static files. You will find React App in 
 (http://localhost:8000/react/) url.```</b>
 
 ## React App
