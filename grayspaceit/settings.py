@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 import os
 from datetime import timedelta
+from pathlib import Path
 from pathlib import Path
 
 import environ
@@ -21,7 +21,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -39,7 +39,6 @@ ALLOWED_HOSTS = env.str('ALLOWED_HOSTS').split(' ')
 CORS_ORIGIN_ALLOW_ALL = env.bool('CORS_ORIGIN_ALLOW_ALL', default=True)
 CORS_ORIGIN_WHITELIST = env.str('CORS_ORIGIN_WHITELIST').split(' ')
 
-SERVERNAME = env.str('SERVERNAME')
 # Application definition
 
 INSTALLED_APPS = [
@@ -60,6 +59,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,10 +69,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-if SERVERNAME == 'heroku':
-    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
-
 
 ROOT_URLCONF = 'grayspaceit.urls'
 
@@ -99,8 +95,8 @@ WSGI_APPLICATION = 'grayspaceit.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db() if env.str("DATABASE_URL", default='') and not DEBUG else env.db('SQLITE_URL',
-                                                                                         default='sqlite:///db.sqlite3')
+    'default': env.db() if env.str("DATABASE_URL", default='') else env.db('SQLITE_URL',
+                                                                           default='sqlite:///db.sqlite3')
 }
 
 # Password validation
@@ -163,5 +159,4 @@ LOGIN_URL = 'login'
 
 REACT_APP_DIR = os.path.join(BASE_DIR, 'react_frontend')
 
-if SERVERNAME == 'heroku':
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

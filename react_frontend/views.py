@@ -1,4 +1,3 @@
-from django.shortcuts import render
 import os
 import logging
 from grayspaceit import settings
